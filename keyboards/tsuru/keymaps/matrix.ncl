@@ -1,5 +1,5 @@
 let { tap, hold, td, combo, macro, ..} = import "fak/keycode.ncl" in
-
+let kc = tap.reg.kc in
 
 ### Keymap itself! ###
 {
