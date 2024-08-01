@@ -141,10 +141,10 @@ let cu = {
 } in
 
 let combos_base = [
-  cu.SCH, kc.ESC, kc.TAB, kc.DOT, kc.COMMA, ks.COLN, kc.SCLN,  tap.layer.TO 1,kc.NUBS,md.lsft & kc.NUBS,md.lsft & kc.NUHS, md.lsft & kc.N2
+  kc.P, kc.Q,cu.SCH, kc.ESC, kc.TAB, kc.DOT, kc.COMMA,  tap.layer.TO 1,kc.NUBS,md.lsft & kc.NUBS,md.lsft & kc.NUHS, md.lsft & kc.N2
 ] in
 let combos_num = [
-  tx & hx, kc.ESC, kc.TAB, kc.DOT, kc.COMMA, ks.COLN, kc.SCLN, tap.tlex & hx,kc.NUBS,md.lsft & kc.NUBS,tx & hx,tx & hx,
+ kc.F1, kc.F10, tx & hx, kc.ESC, kc.TAB, kc.DOT, kc.COMMA, tap.tlex & hx,kc.NUBS,md.lsft & kc.NUBS,tx & hx,tx & hx,
 ] in
 let combos_none = [
   tx & hx, tx & hx, tx & hx, tx & hx, tx & hx, tx & hx, tx & hx, tap.tlex & hx,tx & hx,tx & hx,tx & hx,tx & hx,
