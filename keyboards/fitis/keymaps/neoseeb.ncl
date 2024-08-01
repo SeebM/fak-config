@@ -14,6 +14,10 @@ let virtual_keys' = [
   combo.make 30 [10, 21], # DOT
   combo.make 30 [25, 15], # COMMA
   combo.make 50 [22, 23], # SmartNum
+  combo.make 40 [19, 20], # LT
+  combo.make 40 [26, 27], # GT
+  combo.make 40 [20, 21],  # SQT
+  combo.make 40 [25, 26],  # DQT
 ] in
 
 let virtual_key_count = std.array.length virtual_keys' in
@@ -137,13 +141,13 @@ let cu = {
 } in
 
 let combos_base = [
-  kc.P, kc.Q, cu.SCH, kc.ESC, kc.TAB, kc.DOT, kc.COMMA,  tap.layer.TO 1
+  cu.SCH, kc.ESC, kc.TAB, kc.DOT, kc.COMMA, ks.COLN, kc.SCLN,  tap.layer.TO 1,kc.NUBS,md.lsft & kc.NUBS,md.lsft & kc.NUHS, md.lsft & kc.N2
 ] in
 let combos_num = [
-  kc.F1, kc.F10,tx & hx, tx & hx, kc.TAB, kc.DOT, kc.COMMA, tap.tlex & hx,
+  tx & hx, kc.ESC, kc.TAB, kc.DOT, kc.COMMA, ks.COLN, kc.SCLN, tap.tlex & hx,kc.NUBS,md.lsft & kc.NUBS,tx & hx,tx & hx,
 ] in
 let combos_none = [
-  tx & hx, tx & hx,tx & hx, tx & hx, tx & hx, tx & hx, tx & hx, tx & hx,
+  tx & hx, tx & hx, tx & hx, tx & hx, tx & hx, tx & hx, tx & hx, tap.tlex & hx,tx & hx,tx & hx,tx & hx,tx & hx,
 ] in
 
 ### Keymap itself! ###

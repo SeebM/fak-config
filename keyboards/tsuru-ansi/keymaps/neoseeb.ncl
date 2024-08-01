@@ -2,13 +2,18 @@ let { tap, hold, td, combo, macro, ..} = import "fak/keycode.ncl" in
 let util = import "fak/util_functions.ncl" in
 
 let virtual_keys' = [
-  combo.make 25 [17, 18], # SCH
-  combo.make 25 [1, 10],  # ESC
-  combo.make 25 [20, 21], # TAB
-  combo.make 25 [12, 23], # DOT
-  combo.make 25 [17, 27], # COMMA
-  combo.make 25 [3, 12],  # COLON
-  combo.make 25 [6, 17],  # SEMI
+  combo.make 40 [17, 18], # SCH
+  combo.make 40 [1, 10],  # ESC
+  combo.make 40 [20, 21], # TAB
+  combo.make 40 [12, 23], # DOT
+  combo.make 40 [17, 27], # COMMA
+  combo.make 40 [3, 12],  # COLON
+  combo.make 40 [6, 17],  # SEMI
+  combo.make 50 [24, 25], # SmartNum
+  combo.make 40 [21, 22], # LT
+  combo.make 40 [28, 29], # GT
+  combo.make 40 [22, 23],  # SQT
+  combo.make 40 [27, 28],  # DQT
 ] in
 
 let virtual_key_count = std.array.length virtual_keys' in
@@ -63,16 +68,16 @@ let make_hrm = fun key_idx =>
   let htb_hrm_left = fun eager => htb_hrm_base eager & {
     key_interrupts = [
           ki.tp, ki.tp, ki.tp, ki.tp, ki.tp,  ki.hr, ki.hr, ki.hr, ki.hr, ki.hr,
-        ki.tp, ki.tr, ki.tr, ki.tr, ki.tr,      ki.hr, ki.hr, ki.hr, ki.hr, ki.hr,
-      ki.tr, ki.tp, ki.tp, ki.tp, ki.hr,  ki.hr,  ki.hr, ki.hr, ki.hr, ki.hr, ki.hr,
+        ki.tp, ki.tp, ki.tp, ki.tp, ki.tp,      ki.hr, ki.hr, ki.hr, ki.hr, ki.hr,
+      ki.tp, ki.tp, ki.tp, ki.tp, ki.hr,  ki.hr,  ki.hr, ki.hr, ki.hr, ki.hr, ki.hr,
     ] @ virtual_interrupts
   } in
 
   let htb_hrm_right = fun eager => htb_hrm_base eager & {
     key_interrupts = [
           ki.hr, ki.hr, ki.hr, ki.hr, ki.hr,  ki.tp, ki.tp, ki.tp, ki.tp, ki.tp,
-        ki.hr, ki.hr, ki.hr, ki.hr, ki.hr,      ki.tr, ki.tr, ki.tr, ki.tr, ki.tp,
-      ki.hr, ki.hr, ki.hr, ki.hr, ki.hr,  ki.hr,  ki.hr, ki.tp, ki.tp, ki.tp, ki.tr,
+        ki.hr, ki.hr, ki.hr, ki.hr, ki.hr,      ki.tp, ki.tp, ki.tp, ki.tp, ki.tp,
+      ki.hr, ki.hr, ki.hr, ki.hr, ki.hr,  ki.hr,  ki.hr, ki.tp, ki.tp, ki.tp, ki.tp,
     ] @ virtual_interrupts
   } in
 
@@ -131,10 +136,13 @@ let cu = {
 } in
 
 let combos_base = [
-  cu.SCH, kc.ESC, kc.TAB, kc.DOT, kc.COMMA, ks.COLN, kc.SCLN,
+  cu.SCH, kc.ESC, kc.TAB, kc.DOT, kc.COMMA, ks.COLN, kc.SCLN,  tap.layer.TO 1,kc.NUBS,md.lsft & kc.NUBS,md.lsft & kc.NUHS, md.lsft & kc.N2
+] in
+let combos_num = [
+  tx & hx, kc.ESC, kc.TAB, kc.DOT, kc.COMMA, ks.COLN, kc.SCLN, tap.tlex & hx,kc.NUBS,md.lsft & kc.NUBS,tx & hx,tx & hx,
 ] in
 let combos_none = [
-  tx & hx, tx & hx, tx & hx, tx & hx, tx & hx, tx & hx, tx & hx,
+  tx & hx, tx & hx, tx & hx, tx & hx, tx & hx, tx & hx, tx & hx, tap.tlex & hx,tx & hx,tx & hx,tx & hx,tx & hx,
 ] in
 
 ### Keymap itself! ###
@@ -152,8 +160,8 @@ let combos_none = [
     [
           kc.F1,             kc.F2,           kc.F3,           kc.F4,           kc.F5,      kc.F6,   kc.F7,           kc.F8,           kc.F9,           kc.F10,
         kc.N1,             kc.N2 & ht,      kc.N3 & ht,      kc.N4 & ht,      kc.N5,          kc.N6,   kc.N7 & ht,      kc.N8 & ht,      kc.N9 & ht,      kc.N0,
-      md.lsft & kc.NUHS, md.ralt & kc.N7, md.ralt & kc.N8, md.lsft & kc.N8, tt & ht,  tt & ht,  tt & ht, md.lsft & kc.N9, md.ralt & kc.N9, md.ralt & kc.N0, md.lsft & kc.N0,
-    ] @ combos_none,
+      md.lsft & kc.NUHS, md.ralt & kc.N7, md.ralt & kc.N8, md.lsft & kc.N8, tap.tlex,  kc.COMMA & ht,  kc.DOT & ht, md.lsft & kc.N9, md.ralt & kc.N9, md.ralt & kc.N0, md.lsft & kc.N0,
+    ] @ combos_num,
     # NAV
     [
           kc.TAB,         kc.HOME,        kc.UP,          kc.END,         cu.SNIP,              kc.GRAVE,        md.lsft & kc.N2,    md.lsft & kc.N4,    md.ralt & kc.E,         md.ralt & kc.NUBS,
@@ -162,7 +170,7 @@ let combos_none = [
     ] @ combos_none,
     # DE
     [
-          tt & ht, tt & ht, tt & ht, tt & ht,        fak.BOOT,  tt & ht, tt & ht, tt & ht, tt & ht, md.ralt & kc.Q,
+          tt & ht, tt & ht, tt & ht, tt & ht, tt & ht,          fak.BOOT,tt & ht, tt & ht, tt & ht, md.ralt & kc.Q,
         kc.LBRC, tt & ht, kc.QUOT, md.ralt & kc.E, kc.SCLN,      tt & ht, tt & ht, tt & ht, tt & ht, kc.MINUS,
       tt & ht, tt & ht, tt & ht, tt & ht,        tt & ht, tt & ht, tt & ht, tt & ht, tt & ht, tt & ht, tt & ht,
     ] @ combos_none,
