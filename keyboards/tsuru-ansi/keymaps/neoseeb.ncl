@@ -118,7 +118,7 @@ let thumb = fun thumb_idx =>
   } in
   [
     kc.SPC   & lt 1 & hold.reg.behavior thumb_behavior,
-    kc.ENTER & lt 2 & hold.reg.behavior thumb_behavior,
+    kc.TAB & lt 2 & hold.reg.behavior thumb_behavior,
     kc.BSPC  & lt 3 & hold.reg.behavior thumb_behavior,
   ]
   |> std.array.at thumb_idx
@@ -136,10 +136,10 @@ let cu = {
 } in
 
 let combos_base = [
-  cu.SCH, kc.ESC, kc.TAB, kc.DOT, kc.COMMA, md.lsft & kc.DOT, md.lsft & kc.COMMA,  tap.layer.TO 1,kc.NUBS,md.lsft & kc.NUBS,md.lsft & kc.NUHS, md.lsft & kc.N2
+  cu.SCH, kc.ESC, kc.ENTER, kc.DOT, kc.COMMA, md.lsft & kc.DOT, md.lsft & kc.COMMA,  tap.layer.TO 1,kc.NUBS,md.lsft & kc.NUBS,md.lsft & kc.NUHS, md.lsft & kc.N2
 ] in
 let combos_num = [
-  tx & hx, kc.GRAVE, kc.TAB, kc.DOT, kc.COMMA, ks.COLN, kc.SCLN, tap.tlex & hx,kc.NUBS,md.lsft & kc.NUBS,tx & hx,tx & hx,
+  tx & hx, kc.GRAVE, kc.ENTER, kc.DOT, kc.COMMA, ks.COLN, kc.SCLN, tap.tlex & hx,kc.NUBS,md.lsft & kc.NUBS,tx & hx,tx & hx,
 ] in
 let combos_none = [
   tx & hx, tx & hx, tx & hx, tx & hx, tx & hx, tx & hx, tx & hx, tap.tlex & hx,tx & hx,tx & hx,tx & hx,tx & hx,
@@ -170,7 +170,7 @@ let combos_none = [
     ] @ combos_none,
     # DE
     [
-          tt & ht, tt & ht, tt & ht, tt & ht, tt & ht,          fak.BOOT,tt & ht, tt & ht, tt & ht, md.ralt & kc.Q,
+          md.ralt & kc.Q, tt & ht, tt & ht, tt & ht, tt & ht,          fak.BOOT,tt & ht, tt & ht, tt & ht, kc.ENTER & ht,
         kc.LBRC, tt & ht, kc.QUOT & ht, md.ralt & kc.E & ht, kc.SCLN,      tt & ht, md.lsft & kc.N1 & ht, md.lsft & kc.MINUS & ht, tt & ht, kc.MINUS,
       tt & ht, tt & ht, tt & ht, tt & ht,        tt & ht, tt & ht, tt & ht, tt & ht, tt & ht, tt & ht, tt & ht,
     ] @ combos_none,

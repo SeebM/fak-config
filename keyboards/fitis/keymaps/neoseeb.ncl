@@ -55,7 +55,7 @@ let ki = {
 } in
 
 let layouts = {
-  NEOSEEB = "VKC.,HGFUIAEODNRTSXZYLMBWJ",
+  NEOSEEB = "VKCQPHGFUIAEODNRTSXZYLMBWJ",
 } in
 
 let make_hrm = fun key_idx =>
@@ -123,7 +123,7 @@ let thumb = fun thumb_idx =>
   } in
   [
     kc.SPC   & lt 1 & hold.reg.behavior thumb_behavior,
-    kc.ENTER & lt 2 & hold.reg.behavior thumb_behavior,
+    kc.TAB & lt 2 & hold.reg.behavior thumb_behavior,
     kc.BSPC  & lt 3 & hold.reg.behavior thumb_behavior,
   ]
   |> std.array.at thumb_idx
@@ -141,13 +141,13 @@ let cu = {
 } in
 
 let combos_base = [
-  kc.Q, kc.P,cu.SCH, kc.ESC, kc.TAB, kc.DOT, kc.COMMA,  tap.layer.TO 1,kc.NUBS,md.lsft & kc.NUBS,md.lsft & kc.NUHS, md.lsft & kc.N2
+  kc.Q, kc.P,cu.SCH, kc.ESC, kc.ENTER, kc.DOT, kc.COMMA,  tap.layer.TO 1,kc.NUBS,md.lsft & kc.NUBS,md.lsft & kc.NUHS, md.lsft & kc.N2
 ] in
 let combos_num = [
- kc.F1, kc.F10, tx & hx, kc.GRAVE, kc.TAB, kc.DOT, kc.COMMA, tap.tlex & hx,kc.NUBS,md.lsft & kc.NUBS,md.lsft & kc.NUHS, md.lsft & kc.N2
+ kc.F1, kc.F10, tx & hx, kc.GRAVE, kc.ENTER, kc.DOT, kc.COMMA, tap.tlex & hx,kc.NUBS,md.lsft & kc.NUBS,md.lsft & kc.NUHS, md.lsft & kc.N2
 ] in
 let combos_none = [
-  tx & hx, tx & hx, tx & hx, tx & hx, tx & hx, tx & hx, tx & hx, tap.tlex & hx,tx & hx,tx & hx,tx & hx,tx & hx,
+  md.ralt & kc.Q & hx, tx & hx, tx & hx, tx & hx, tx & hx, tx & hx, tx & hx, tap.tlex & hx,tx & hx,tx & hx,tx & hx,tx & hx,
 ] in
 
 ### Keymap itself! ###
@@ -165,17 +165,17 @@ let combos_none = [
     [
                             kc.F2,           kc.F3,           kc.F4,           kc.F5,      kc.F6,   kc.F7,           kc.F8,           kc.F9,
         kc.N1,             kc.N2 & ht,      kc.N3 & ht,      kc.N4 & ht,      kc.N5,          kc.N6,   kc.N7 & ht,      kc.N8 & ht,      kc.N9 & ht,      kc.N0,
-      md.lsft & kc.NUHS, md.ralt & kc.N7, md.ralt & kc.N8, md.lsft & kc.N8, tap.tlex,  tt & ht,  kc.DOT, md.lsft & kc.N9, md.ralt & kc.N9, md.ralt & kc.N0, md.lsft & kc.N2,
+      md.lsft & kc.NUHS, md.ralt & kc.N7, md.ralt & kc.N8, md.lsft & kc.N8, tap.tlex,  tt & ht,   tt & ht, md.lsft & kc.N9, md.ralt & kc.N9, md.ralt & kc.N0, md.lsft & kc.N2,
     ] @ combos_num,
     # NAV
     [
                           kc.HOME,        kc.UP,          kc.END,         cu.SNIP,              kc.GRAVE,        md.lsft & kc.N2,    md.lsft & kc.N4,    md.ralt & kc.E,
         kc.DEL,         kc.LEFT & ht,        kc.DOWN & ht,        kc.RGHT & ht,        md.lsft & kc.S,           md.lsft & kc.N0, kc.RBRC & ht,       kc.SLASH & ht,      md.lsft & kc.RBRC & ht, md.lsft & kc.N7,
-      md.lctl & kc.Y, md.lctl & kc.X, md.lctl & kc.C, md.lctl & kc.V, tt & ht,          tt & ht,    kc.TAB,         md.lsft & kc.N5,    md.ralt & kc.MINUS, md.ralt & kc.RBRC,      md.lsft & kc.N6,
+      md.lctl & kc.Y, md.lctl & kc.X, md.lctl & kc.C, md.lctl & kc.V, tt & ht,          tt & ht,     tt & ht,         md.lsft & kc.N5,    md.ralt & kc.MINUS, md.ralt & kc.RBRC,      md.lsft & kc.N6,
     ] @ combos_none,
     # DE
     [
-                tt & ht, tt & ht, tt & ht, tt & ht,       fak.BOOT,   tt & ht, tt & ht, tt & ht,
+                tt & ht, tt & ht, tt & ht, md.ralt & kc.Q,       fak.BOOT,   tt & ht, tt & ht, kc.ENTER & ht,
         kc.LBRC, tt & ht, kc.QUOT & ht, md.ralt & kc.E & ht, kc.SCLN,      tt & ht, tt & ht, tt & ht, tt & ht, kc.MINUS,
       tt & ht, tt & ht, tt & ht, tt & ht,        tt & ht, tt & ht, tt & ht, tt & ht, tt & ht, tt & ht, tt & ht,
     ] @ combos_none,
