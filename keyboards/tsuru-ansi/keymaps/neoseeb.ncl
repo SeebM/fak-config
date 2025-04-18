@@ -174,7 +174,7 @@ let combos_none = [
     let base = fun key_idx => (alphas layouts.NEOSEEB) |> std.array.at key_idx in
     # ALPHAS
     [
-          base 0,  base 1,  base 2,  base 3,  base 4,      base 5,  base 6,  base 7,  base 8,  base 9,
+          base 0,  base 1,  base 2,  base 3,  md.lgui & md.lalt & kc.K,      media.MUTE  ,  base 6,  base 7,  base 8,  base 9,
         base 10, base 11, base 12, base 13, base 14,         base 15, base 16, base 17, base 18, base 19,
       base 20, base 21, base 22, base 23, thumb 0,   thumb 1,  thumb 2, base 24, base 25, base 26, base 27,
     ] @ combos_base,
@@ -188,7 +188,7 @@ let combos_none = [
     [
           kc.TAB,         kc.HOME,        kc.UP,          kc.END,         cu.SNIP,              md.lsft & kc.N5,         kc.BSLS,    md.lsft & kc.N4,     kc.GRAVE,         kc.NUHS,
         kc.DEL,         kc.LEFT & ht,        kc.DOWN & ht,        kc.RGHT & ht,        md.lsft & kc.S,           md.lsft & kc.N0, kc.RBRC & ht,       kc.SLASH & ht,      md.lsft & kc.RBRC & ht, md.lsft & kc.N7,
-      md.lctl & kc.Y, md.lctl & kc.X, md.lctl & kc.C, md.lctl & kc.V, tt & ht,          tt & ht,    tt & ht,         md.lsft & kc.N5,    md.ralt & kc.BSLS, md.ralt & kc.RBRC,      md.ralt & kc.MINUS,
+      md.lctl & kc.Y, md.lctl & kc.X, md.lctl & kc.C, md.lctl & kc.V, tt & ht,          tt & ht,    tt & ht,         md.lsft & kc.N6,    md.ralt & kc.BSLS, md.ralt & kc.RBRC,      md.ralt & kc.MINUS,
     ] @ combos_none,
     # DE
     [
