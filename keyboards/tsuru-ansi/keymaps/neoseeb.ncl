@@ -4,7 +4,7 @@ let util = import "fak/util_functions.ncl" in
 let virtual_keys' = [
   combo.make 40 [17, 18], # SCH
   combo.make 40 [1, 10],  # ESC
-  combo.make 40 [20, 21], # TAB
+  combo.make 40 [1, 2], # TAB
   combo.make 40 [12, 13], # DOT
   combo.make 40 [17, 16], # COMMA
   combo.make 40 [3, 12],  # COLON
@@ -118,7 +118,7 @@ let thumb = fun thumb_idx =>
   } in
   [
     kc.SPC   & lt 1 & hold.reg.behavior thumb_behavior,
-    kc.TAB & lt 2 & hold.reg.behavior thumb_behavior,
+    kc.DOT & lt 2 & hold.reg.behavior thumb_behavior,
     kc.BSPC  & lt 3 & hold.reg.behavior thumb_behavior,
   ]
   |> std.array.at thumb_idx
@@ -158,13 +158,13 @@ let cu = {
 } in
 
 let combos_base = [
-  cu.SCH, kc.ESC, kc.ENTER, kc.DOT, kc.COMMA, md.lsft & kc.DOT, md.lsft & kc.COMMA, kc.ENTER,kc.NUBS,md.lsft & kc.NUBS,md.lsft & kc.NUHS, md.lsft & kc.N2
+  cu.SCH, kc.ESC, kc.TAB, kc.DOT, kc.COMMA, md.lsft & kc.DOT, md.lsft & kc.COMMA, kc.ENTER,kc.NUBS,md.lsft & kc.NUBS,md.lsft & kc.NUHS, md.lsft & kc.N2
 ] in
 let combos_num = [
-  tx & hx, kc.GRAVE, kc.ENTER, kc.DOT, kc.COMMA, ks.COLN, kc.SCLN, kc.ENTER,kc.NUBS,md.lsft & kc.NUBS,tx & hx,md.lsft & kc.N0,
+  tx & hx, kc.GRAVE, kc.TAB, kc.DOT, kc.COMMA, ks.COLN, kc.SCLN, kc.ENTER,md.ralt &kc.NUBS, md.ralt & kc.RBRC,tx & hx,md.lsft & kc.N0,
 ] in
 let combos_none = [
-  tx & hx, kc.ESC, kc.ENTER, kc.DOT, kc.COMMA, tx & hx, tx & hx, kc.ENTER,tx & hx,tx & hx,tx & hx,tx & hx,
+  tx & hx, kc.ESC, kc.TAB, kc.DOT, kc.COMMA, tx & hx, tx & hx, kc.ENTER,tx & hx,tx & hx,tx & hx,tx & hx,
 ] in
 
 ### Keymap itself! ###
@@ -186,7 +186,7 @@ let combos_none = [
     ] @ combos_num,
     # NAV
     [
-          kc.TAB,         kc.HOME,        kc.UP,          kc.END,         cu.SNIP,              md.lsft & kc.N5,         kc.BSLS,    md.lsft & kc.N4,     kc.GRAVE,         kc.NUHS,
+          kc.TAB,         kc.HOME,        kc.UP,          kc.END,         cu.SNIP,              md.lsft & kc.N5,         md.lsft & kc.N2,    kc.BSLS,     kc.GRAVE,         kc.NUHS,
         kc.DEL,         kc.LEFT & ht,        kc.DOWN & ht,        kc.RGHT & ht,        md.lsft & kc.S,           md.lsft & kc.N0, kc.RBRC & ht,       kc.SLASH & ht,      md.lsft & kc.RBRC & ht, md.lsft & kc.N7,
       md.lctl & kc.Y, md.lctl & kc.X, md.lctl & kc.C, md.lctl & kc.V, tt & ht,          tt & ht,    tt & ht,         md.lsft & kc.N6,    md.ralt & kc.BSLS, md.ralt & kc.RBRC,      md.ralt & kc.MINUS,
     ] @ combos_none,
