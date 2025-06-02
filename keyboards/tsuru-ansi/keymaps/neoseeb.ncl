@@ -1,6 +1,10 @@
 let { tap, hold, td, combo, macro, ..} = import "fak/keycode.ncl" in
 let util = import "fak/util_functions.ncl" in
 
+#   00 01 02 03 04    05 06 07 08 09
+#  10 11 12 13 14      15 16 17 18 19
+# 20 21 22 23 24   25   26 27 28 29 30
+
 let virtual_keys' = [
   combo.make 40 [17, 18], # SCH
   combo.make 40 [1, 10],  # ESC
@@ -55,7 +59,7 @@ let layouts = {
 
 let make_hrm = fun key_idx =>
   let htb_hrm_base = fun eager => {
-    timeout_ms = 250,
+    timeout_ms = 175,
     # quick_tap_ms = 100,
     # quick_tap_interrupt_ms = 500,
     # global_quick_tap_ms = 80,
@@ -118,7 +122,7 @@ let thumb = fun thumb_idx =>
   } in
   [
     kc.SPC   & lt 1 & hold.reg.behavior thumb_behavior,
-    kc.DOT & lt 2 & hold.reg.behavior thumb_behavior,
+    kc.TAB & lt 2 & hold.reg.behavior thumb_behavior,
     kc.BSPC  & lt 3 & hold.reg.behavior thumb_behavior,
   ]
   |> std.array.at thumb_idx
@@ -174,15 +178,15 @@ let combos_none = [
     let base = fun key_idx => (alphas layouts.NEOSEEB) |> std.array.at key_idx in
     # ALPHAS
     [
-          base 0,  base 1,  base 2,  base 3,  md.lgui & md.lalt & kc.K,      media.MUTE  ,  base 6,  base 7,  base 8,  base 9,
+          base 0,  base 1,  base 2,  base 3,      media.MUTE  ,  md.lgui & md.lalt & kc.K,  base 6,  base 7,  base 8,  base 9,
         base 10, base 11, base 12, base 13, base 14,         base 15, base 16, base 17, base 18, base 19,
       base 20, base 21, base 22, base 23, thumb 0,   thumb 1,  thumb 2, base 24, base 25, base 26, base 27,
     ] @ combos_base,
     # NUM
     [
-          kc.F1,             kc.F2,           kc.F3,           kc.F4,           kc.F5,      kc.F6,   kc.F7,           kc.F8,           kc.F9,           kc.F10,
-        kc.N1,             kc.N2 & ht,      kc.N3 & ht,      kc.N4 & ht,      kc.N5,          kc.N6,   kc.N7 & ht,      kc.N8 & ht,      kc.N9 & ht,      kc.N0,
-      kc.DEL,             cu.brc3,          cu.brc2,           cu.brc1,  tt & ht,   tt & ht,   tt & ht, kc.RBRC & ht,       kc.SLASH & ht,      md.lsft & kc.RBRC & ht, md.lsft & kc.N7,
+          kc.F1,             kc.F2,           kc.F3,           kc.F4,          kc.F5,          kc.F6,   kc.F7,           kc.F8,           kc.F9,                 kc.F10,
+        kc.N1,             kc.N2 & ht,      kc.N3 & ht,      kc.N4 & ht,      kc.N5,             kc.N6,   kc.N7 & ht,     kc.N8 & ht,      kc.N9 & ht,             kc.N0,
+      kc.DEL,             cu.brc3,         cu.brc2,         cu.brc1,        tt & ht,   tt & ht,   tt & ht, kc.RBRC & ht,    kc.SLASH & ht,  md.lsft & kc.RBRC & ht, md.lsft & kc.N7,
     ] @ combos_num,
     # NAV
     [
