@@ -7,17 +7,19 @@ let util = import "fak/util_functions.ncl" in
 
 let virtual_keys' = [
   combo.make 40 [17, 18], # SCH
+  combo.make 40 [16, 17],  # ß
+  combo.make 40 [21, 22], # LT,br2
+  combo.make 40 [28, 29], # GT,tilde
+  combo.make 40 [11, 13], # DOT
+  combo.make 40 [12, 13], # COMMA
   combo.make 40 [1, 10],  # ESC
-  combo.make 40 [1, 2], # TAB
-  combo.make 40 [12, 13], # DOT
-  combo.make 40 [17, 16], # COMMA
-  combo.make 40 [3, 12],  # COLON
-  combo.make 40 [6, 17],  # SEMI
+  combo.make 40 [27, 28],  # QT
   combo.make 30 [7, 8], # Enter
-  combo.make 40 [21, 22], # LT
-  combo.make 40 [28, 29], # GT
-  combo.make 40 [22, 23],  # SQT
-  combo.make 40 [27, 28],  # DQT
+  combo.make 40 [1, 2], # ENTER2
+  combo.make 40 [20, 21],  # br3
+  #combo.make 40 [21, 22],  # br2
+  combo.make 40 [22, 23],  # br1
+
 ] in
 
 let virtual_key_count = std.array.length virtual_keys' in
@@ -162,13 +164,13 @@ let cu = {
 } in
 
 let combos_base = [
-  cu.SCH, kc.ESC, kc.TAB, kc.DOT, kc.COMMA, md.lsft & kc.DOT, md.lsft & kc.COMMA, kc.ENTER,kc.NUBS,md.lsft & kc.NUBS,md.lsft & kc.NUHS, md.lsft & kc.N2
+  cu.SCH, kc.MINUS, kc.NUBS, md.lsft & kc.NUBS, kc.DOT, kc.COMMA, kc.ESC,   md.lsft & kc.N2,   kc.ENTER, kc.ENTER, tx & hx,tx & hx,
 ] in
 let combos_num = [
-  tx & hx, kc.GRAVE, kc.TAB, kc.DOT, kc.COMMA, ks.COLN, kc.SCLN, kc.ENTER,md.ralt &kc.NUBS, md.ralt & kc.RBRC,tx & hx,md.lsft & kc.N0,
+  tx & hx, tx & hx, cu.brc2, md.ralt & kc.NUBS, kc.DOT, kc.COMMA, kc.GRAVE, md.lsft & kc.NUHS, kc.ENTER, kc.ENTER, cu.brc3,cu.brc1,
 ] in
 let combos_none = [
-  tx & hx, kc.ESC, kc.TAB, kc.DOT, kc.COMMA, tx & hx, tx & hx, kc.ENTER,tx & hx,tx & hx,tx & hx,tx & hx,
+  tx & hx, tx & hx, tx & hx, tx & hx,           kc.DOT, kc.COMMA, kc.ESC,   tx & hx,           kc.ENTER, kc.ENTER, tx & hx,tx & hx,
 ] in
 
 ### Keymap itself! ###
@@ -184,15 +186,15 @@ let combos_none = [
     ] @ combos_base,
     # NUM
     [
-          kc.F1,             kc.F2,           kc.F3,           kc.F4,          kc.F5,          kc.F6,   kc.F7,           kc.F8,           kc.F9,                 kc.F10,
-        kc.N1,             kc.N2 & ht,      kc.N3 & ht,      kc.N4 & ht,      kc.N5,             kc.N6,   kc.N7 & ht,     kc.N8 & ht,      kc.N9 & ht,             kc.N0,
-      kc.DEL,             cu.brc3,         cu.brc2,         cu.brc1,        tt & ht,   tt & ht,   tt & ht, kc.RBRC & ht,    kc.SLASH & ht,  md.lsft & kc.RBRC & ht, md.lsft & kc.N7,
+          kc.BSPC,          kc.N4,          kc.N5,       kc.F6,       kc.COMMA,      md.lsft & kc.N5, md.lsft & kc.N4,      kc.BSLS,                 kc.GRAVE,               md.lsft & kc.NUBS,
+        kc.N0,            kc.N1 & ht,    kc.N2 & ht,    kc.N3 & ht,  kc.DOT,          md.lsft & kc.N0, kc.RBRC & ht,         kc.SLASH & ht,           md.lsft & kc.RBRC & ht, md.lsft & kc.N7,
+      kc.DEL,            kc.N7,         kc.N8,         kc.N9,       tt & ht,  tt & ht, tt & ht,         md.lsft & kc.N6 & ht, md.lsft & kc.GRAVE & ht, md.ralt & kc.RBRC & ht, md.ralt & kc.MINUS,
     ] @ combos_num,
     # NAV
     [
-          kc.TAB,         kc.HOME,        kc.UP,          kc.END,         cu.SNIP,              md.lsft & kc.N5,         md.lsft & kc.N2,    kc.BSLS,     kc.GRAVE,         kc.NUHS,
-        kc.DEL,         kc.LEFT & ht,        kc.DOWN & ht,        kc.RGHT & ht,        md.lsft & kc.S,           md.lsft & kc.N0, kc.RBRC & ht,       kc.SLASH & ht,      md.lsft & kc.RBRC & ht, md.lsft & kc.N7,
-      md.lctl & kc.Y, md.lctl & kc.X, md.lctl & kc.C, md.lctl & kc.V, tt & ht,          tt & ht,    tt & ht,         md.lsft & kc.N6,    md.ralt & kc.BSLS, md.ralt & kc.RBRC,      md.ralt & kc.MINUS,
+          kc.TAB,         kc.HOME,      kc.UP,          kc.END,         cu.SNIP,       tt & ht, kc.F9,      kc.F10,     kc.F11,     kc.F12,
+        kc.DEL,         kc.LEFT & ht,  kc.DOWN & ht,   kc.RGHT & ht,   md.lctl & kc.S,  tt & ht, kc.F5 & ht, kc.F6 & ht, kc.F7 & ht, kc.F8,
+      md.lctl & kc.Y, md.lctl & kc.X, md.lctl & kc.C, md.lctl & kc.V, tt & ht,  tt & ht, tt & ht, kc.F1 ,     kc.F2,      kc.F3,      kc.F4,
     ] @ combos_none,
     # DE
     [
